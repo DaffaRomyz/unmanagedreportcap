@@ -1,0 +1,4 @@
+ID;OrderNo;buyer;total;currency_code;createdAt;createdBy;modifiedAt;modifiedBy
+e046682e-db5d-43ce-9930-1e2c117822d0;order1;admin;22.22;GBP;2001-08-03T17:00:00.000Z;Alpha@example.com;2019-07-20T17:00:00.000Z;Alpha@example.net
+7963bd10-e892-4f64-ae36-ce83cf25c395;order1;admin;33.33;GBP;2001-08-03T17:00:00.000Z;Alpha@example.com;2019-07-20T17:00:00.000Z;Alpha@example.net
+81d58108-113e-4c4d-937f-2cffd19646c5;order2;admin;12.34;GBP;2001-08-03T17:00:00.000Z;Alpha@example.com;2019-07-20T17:00:00.000Z;Alpha@example.net

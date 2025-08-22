@@ -1,0 +1,16 @@
+ID;parent_ID;name;descr
+10;;Fiction;Fiction
+11;10;Drama;Drama
+12;10;Poetry;Poetry
+13;10;Fantasy;Fantasy
+14;10;Science Fiction;Science Fiction
+15;10;Romance;Romance
+16;10;Mystery;Mystery
+17;10;Thriller;Thriller
+18;10;Dystopia;Dystopia
+19;10;Fairy Tale;Fairy
+20;;Non-Fiction;Non-Fiction
+21;20;Biography;Biography
+22;21;Autobiography;Autobiography
+23;20;Essay;Essay
+24;20;Speech;Speech

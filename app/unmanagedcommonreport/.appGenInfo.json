@@ -1,0 +1,28 @@
+{
+  "generationParameters": {
+    "generationDate": "Fri Aug 22 2025 14:42:57 GMT+0700 (Western Indonesia Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/odata/v4/CatalogService/",
+    "appName": "unmanagedcommonreport",
+    "appTitle": "Unmanaged Common Report",
+    "appDescription": "Unmanaged Common Report.",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.139.0",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.18.3",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "AllEntities"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  (```mvn spring-boot:run```) and navigate to the following location in your browser:\n\nhttp://localhost:8080/unmanagedcommonreport/webapp/index.html"
+  }
+}
