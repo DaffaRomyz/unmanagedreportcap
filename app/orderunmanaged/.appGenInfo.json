@@ -1,0 +1,28 @@
+{
+  "generationParameters": {
+    "generationDate": "Fri Aug 22 2025 15:58:55 GMT+0700 (Western Indonesia Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/odata/v4/CatalogService/",
+    "appName": "orderunmanaged",
+    "appTitle": "Order Unmanaged",
+    "appDescription": "Order Unmanaged.",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.139.0",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.18.3",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "OrderUnmanaged"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  (```mvn spring-boot:run```) and navigate to the following location in your browser:\n\nhttp://localhost:8080/orderunmanaged/webapp/index.html"
+  }
+}

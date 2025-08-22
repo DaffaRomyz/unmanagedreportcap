@@ -19,4 +19,6 @@ service CatalogService {
     @title:'Order Items'
     entity OrderItems  as projection on unmanagedreport.OrderItems;
     
+    @readonly
+    entity OrderUnmanaged as projection on unmanagedreport.OrderUnmanaged;
 }
