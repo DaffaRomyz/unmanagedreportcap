@@ -1,5 +1,6 @@
 package customer.unmanagedreportcap.handlers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import com.sap.cds.services.handler.annotations.ServiceName;
 import com.sap.cds.services.persistence.PersistenceService;
 
 import cds.gen.catalogservice.CatalogService_;
+import cds.gen.catalogservice.OrderUnmanaged;
 import cds.gen.catalogservice.OrderUnmanaged_;
 import cds.gen.catalogservice.Orders_;
 import customer.unmanagedreportcap.utils.CheckDataVisitor;
@@ -40,6 +42,7 @@ import customer.unmanagedreportcap.utils.UnmanagedReportUtils;
 import cds.gen.catalogservice.AllEntities;
 import cds.gen.catalogservice.AllEntities_;
 // import cds.gen.catalogservice.Books;
+import cds.gen.catalogservice.Books_;
 
 @Component
 @ServiceName(CatalogService_.CDS_NAME)
@@ -47,6 +50,9 @@ public class CatalogServiceHandler implements EventHandler {
 
     @Autowired
     CdsModel cdsModel;
+
+    @Autowired
+    PersistenceService db;
 
     @On(event = CqnService.EVENT_READ, entity = AllEntities_.CDS_NAME)
     public void getAllEntities(CdsReadEventContext context) {
@@ -113,17 +119,66 @@ public class CatalogServiceHandler implements EventHandler {
 
     @On(event = CqnService.EVENT_READ, entity = OrderUnmanaged_.CDS_NAME)
     public void getUnmanagedOrder(CdsReadEventContext context) {
-        CqnSelect select = context.getCqn();
+        List<OrderUnmanaged> resultList = new ArrayList<OrderUnmanaged>();
 
-        CqnSelect selectCopy = CQL.copy(select, new Modifier() {
-            @Override
-            public CqnStructuredTypeRef ref(CqnStructuredTypeRef ref) {
-                // return CQL.to(Orders_.CDS_NAME).asRef();
-                return CQL.entity(Orders_.class).asRef();
+        // get SELECT CQN object
+        CqnSelect cqnSelect = context.getCqn();
+
+        CqnSelect select = Select.from(Orders_.class);
+        Result result = db.run(select);
+        result.forEach((row) -> {
+            OrderUnmanaged resultRow = OrderUnmanaged.create();
+
+            resultRow.setOrderNo(row.get("OrderNo").toString());
+            resultRow.setBuyer(row.get("buyer").toString());
+            resultRow.setCurrencyCode(row.get("currency_code").toString());
+            resultRow.setTotal(new BigDecimal(row.get("total").toString()));
+
+            // filter
+            CheckDataVisitor checkDataVisitor = new CheckDataVisitor(resultRow);
+            try {
+                CqnPredicate cqnPredicate = cqnSelect.where().get();
+                cqnPredicate.accept(checkDataVisitor);
+                if (checkDataVisitor.matches()) {
+                    resultList.add(resultRow);
+                }
+            } catch (Exception e) {
+                // No where conditions
+                resultList.add(resultRow);
             }
         });
 
-        context.setResult(context.getService().run(selectCopy));
+        if (context.getParameterInfo().getQueryParameter("$apply") != null) {
+            // aggregate
+            List<? extends Map<String, ?>> aggregateResult = UnmanagedReportUtils.aggregate(cqnSelect, resultList);
+            // Result resultAggregate = ResultBuilder
+            // sort
+            UnmanagedReportUtils.sort(cqnSelect.orderBy(), aggregateResult);
+
+            // inlineCount
+            long inlineCount = aggregateResult.size();
+            List<? extends Map<String, ?>> resultsPaging = UnmanagedReportUtils.getTopSkip(context.getCqn().top(),
+                    context.getCqn().skip(), aggregateResult);
+            Result resultFinal = ResultBuilder.selectedRows(resultsPaging).inlineCount(inlineCount).result();
+
+            context.setResult(resultFinal);
+            
+        } else {
+            // sort
+            UnmanagedReportUtils.sort(cqnSelect.orderBy(), resultList);
+
+            // inlineCount
+            long inlineCount = resultList.size();
+            // paging
+            List<? extends Map<String, ?>> results2 = UnmanagedReportUtils.getTopSkip(context.getCqn().top(),
+                    context.getCqn().skip(), resultList);
+
+            Result resultFinal = ResultBuilder.selectedRows(results2).inlineCount(inlineCount).result();
+
+            context.setResult(resultFinal);
+        }
+
+        
 
     }
 

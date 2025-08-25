@@ -1,8 +1,7 @@
 using unmanagedreport from '../db/schema';
 
 service CatalogService {
-    @readonly
-    entity AllEntities as projection on unmanagedreport.AllEntities;
+
     
     @readonly
     entity Books       as projection on unmanagedreport.Books;
@@ -19,6 +18,9 @@ service CatalogService {
     @title:'Order Items'
     entity OrderItems  as projection on unmanagedreport.OrderItems;
     
+    @readonly
+    entity AllEntities as projection on unmanagedreport.AllEntities;
+
     @readonly
     entity OrderUnmanaged as projection on unmanagedreport.OrderUnmanaged;
 }

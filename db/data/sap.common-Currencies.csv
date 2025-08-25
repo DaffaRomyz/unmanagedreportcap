@@ -1,4 +1,6 @@
-code;symbol;minorUnit;name;descr
-GBP;£;2;Pound;pound sterling
-USD;$;2;Dollar;United States dollar
-JPY;¥;2;Yen;Japanese yen
+code,symbol,minorUnit,name,descr
+651,22651,65,name-13322651,descr-13322651
+224,70224,88,name-4870224,descr-4870224
+225,70225,67,name-4870225,descr-4870225
+226,70226,4,name-4870226,descr-4870226
+227,70227,86,name-4870227,descr-4870227

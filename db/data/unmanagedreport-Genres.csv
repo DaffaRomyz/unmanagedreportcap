@@ -1,16 +1,6 @@
-ID;parent_ID;name;descr
-10;;Fiction;Fiction
-11;10;Drama;Drama
-12;10;Poetry;Poetry
-13;10;Fantasy;Fantasy
-14;10;Science Fiction;Science Fiction
-15;10;Romance;Romance
-16;10;Mystery;Mystery
-17;10;Thriller;Thriller
-18;10;Dystopia;Dystopia
-19;10;Fairy Tale;Fairy
-20;;Non-Fiction;Non-Fiction
-21;20;Biography;Biography
-22;21;Autobiography;Autobiography
-23;20;Essay;Essay
-24;20;Speech;Speech
+ID,parent_ID,name,descr
+14621190,14621190,name-14621190,descr-14621190
+27457227,27457227,name-27457227,descr-27457227
+27457228,27457228,name-27457228,descr-27457228
+27457229,27457229,name-27457229,descr-27457229
+27457230,27457230,name-27457230,descr-27457230
