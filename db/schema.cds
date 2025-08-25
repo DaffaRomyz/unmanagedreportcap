@@ -88,7 +88,7 @@ entity OrderUnmanaged {
   key OrderNo  : String        @title: '{i18n>OrderNumber}';
       buyer    : User;
 
-      @Semantics.amount.currencyCode: 'currency_code'
+      @Measures.ISOCurrency : currency_code
       total    : Decimal(9, 2) @readonly;
 
       @Semantics.currencyCode

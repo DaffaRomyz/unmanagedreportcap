@@ -36,6 +36,7 @@ annotate service.OrderUnmanaged with @(
 );
 
 annotate service.OrderUnmanaged with {
-    total  @Analytics.Measure  @Aggregation.default: #SUM  
+    total  @Analytics.Measure  @Aggregation.default: #SUM @Measures.ISOCurrency : currency_code  ;
+    currency @Semantics.currencyCode;
 };
 
